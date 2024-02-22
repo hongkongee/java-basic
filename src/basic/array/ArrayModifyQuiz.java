@@ -20,28 +20,30 @@ public class ArrayModifyQuiz {
 
 
         while (true) {
-            System.out.println("수정 target의 이름을 입력하세요.");
+            System.out.println("수정할 친구의 이름을 입력하세요.");
             System.out.print("> ");
             String findName = sc.next();
-            boolean flag = false;
-            int idx = -1;
+
+            int idx = -1; // flag 역할도 동시 수행
 
             for (int i = 0; i < kakao.length; i++) {
                 if (kakao[i].equals(findName)) {
                     idx = i;
-                    flag = true;
                     break;
                 }
             }
 
-            if (flag == true) {
+            if (idx != -1) {
                 System.out.println("새로 부여할 이름을 입력하세요.");
                 System.out.print("> ");
-                String modifyName = sc.next();
-                kakao[idx] = modifyName;
+
+//                String modifyName = sc.next();
+//                kakao[idx] = modifyName;
+                kakao[idx] = sc.next();
+
                 break;
             } else {
-                System.out.println("찾으시는 이름이 없습니다.");
+                System.out.printf("%s은(는) 없는 이름입니다.\n", findName);
             }
         }
 

@@ -1,5 +1,6 @@
 package basic.array;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayInsertQuiz {
@@ -26,6 +27,7 @@ public class ArrayInsertQuiz {
         System.out.print("먹고 싶은 음식을 입력하세요: ");
         System.out.println("'배불러' 를 입력하면 종료됩니다.");
         outer: for (int i = 0; i < foods.length; i++) {
+//            System.out.println(Arrays.toString(foods));
             System.out.print("> ");
             String name = sc.next();
 
@@ -36,8 +38,7 @@ public class ArrayInsertQuiz {
                 }
                 if(name.equals(foods[j])) {
                     System.out.println("이미 존재하는 음식입니다.");
-                    System.out.println(i);
-//                    i--;
+                    i--; // 중복 이후 값을 넣지 않았으므로 다시 index를 원상태로 돌려놓기
                     continue outer;
                 }
             }
