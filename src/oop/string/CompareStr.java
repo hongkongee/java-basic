@@ -23,6 +23,12 @@ import java.util.Scanner;
 public class CompareStr {
     public static void main(String[] args) {
 
+        String name = "김춘식";
+        String name2 = new String("김춘식");
+        System.out.println(name == name2);
+
+
+
         Scanner sc = new Scanner(System.in);
 
         User kim = new User();
