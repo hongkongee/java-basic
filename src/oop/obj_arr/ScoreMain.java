@@ -66,6 +66,16 @@ public class ScoreMain {
             scores[j].scoreInfo();
         }
 
+        /*
+        public static boolean isValidateScore (int score) {
+            if(score > 100 || score < 0) {
+                System.out.println("유효하지 않은 점수입니다. ");
+                return false;
+            }
+        }
+
+         */
+
         sc.close();
 
 
