@@ -16,7 +16,7 @@ public class WrapperExample {
 //        int i = v1.intValue(); -> deprecated
 
         // autoboxing: 기본 타입을 자동으로 객체형으로 변환
-        Integer v1 = a;
+        Integer v1 = 100;
         Boolean v2 = false;
         Character v3 = c;
         Double v4 = d;
