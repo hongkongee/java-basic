@@ -33,6 +33,14 @@ public class HashMapExample {
         // Map 내부에 key의 존재 유무를 확인하는 메서드: containsKey(key)
         System.out.println(map.containsKey("멍멍이"));
 
+        // Map 내부의 값을 참조하는 법: get(key)
+        String nick = "짹짹이";
+        if (map.containsKey(nick)) {
+            System.out.printf("%s 별명을 가진 학생은 %s입니다.\n", nick, map.get(nick));
+        } else {
+            System.out.println("그런 별명을 가진 학생은 없어요.");
+        }
+
         // Map의 크기를 확인하는 메서드: size()
         System.out.println("map의 크기: " + map.size());
 
