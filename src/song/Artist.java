@@ -3,7 +3,6 @@ package song;
 import java.io.Serializable;
 import java.util.Set;
 
-// 세이브 파일로 뽑을거면 Serializable 인터페이스 구현
 public class Artist implements Serializable {
     private String name; // 가수명
     private Set<String> songList; // 노래 목록
