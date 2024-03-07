@@ -12,6 +12,9 @@ import java.util.List;
 import static video.ui.AppUi.*;
 
 public class UserService implements AppService {
+
+    private final UserRepository userRepository = new UserRepository();
+
     @Override
     public void start() {
 
@@ -74,15 +77,15 @@ public class UserService implements AppService {
     private List<User> searchUser() {
         System.out.println("\n### 조회할 회원의 이름을 입력하세요.");
         String name = inputString(">>> ");
-        List<User> users = UserRepository.findUserByName(name);
-        return UserRepository.findUserByName(name);
+        List<User> users = userRepository.findUserByName(name);
+        return userRepository.findUserByName(name);
     }
 
     // 단순히 조회 결과 출력
     private void showSearchUser() {
         List<User> users = searchUser();
 
-        if (user.size() > 0) {
+        if (users.size() > 0) {
             System.out.println("\n============================= 회원 조회 결과 =================================");
             for (User user : users) {
                 System.out.println(user);

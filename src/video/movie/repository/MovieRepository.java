@@ -30,8 +30,11 @@ public class MovieRepository {
         Movie movie7 = new Movie("타이타닉", "미국", 1998);
         Movie movie8 = new Movie("인생은 아름다워", "이탈리아", 1999);
         Movie movie9 = new Movie("쇼생크 탈출", "미국", 1995);
-        Movie movie10 = new Movie("기생충", "대한민국", 2019);
+        Movie movie10 = new Movie("기생충", "한국", 2019);
         Movie movie11 = new Movie("화양연화", "홍콩", 2000);
+        Movie movie12 = new Movie("서울의봄", "한국", 2023);
+        Movie movie13 = new Movie("탑건", "미국", 2022);
+        Movie movie14 = new Movie("상견니", "대만", 2018);
 
         movieDatabase.put(movie1.getSerialNumber(), movie1);
         movieDatabase.put(movie2.getSerialNumber(), movie2);
@@ -44,6 +47,30 @@ public class MovieRepository {
         movieDatabase.put(movie9.getSerialNumber(), movie9);
         movieDatabase.put(movie10.getSerialNumber(), movie10);
         movieDatabase.put(movie11.getSerialNumber(), movie11);
+        movieDatabase.put(movie12.getSerialNumber(), movie12);
+        movieDatabase.put(movie13.getSerialNumber(), movie13);
+        movieDatabase.put(movie14.getSerialNumber(), movie14);
+    }
+
+    public static List<Movie> searchByRental(boolean possible) {
+        List<Movie> searchedList = new ArrayList<>();
+
+        if (possible) { // 대여 가능한 Movie들만 거르기
+            for (int key : movieDatabase.keySet()) {
+                Movie movie = movieDatabase.get(key);
+                if (!movie.isRental()) {
+                    searchedList.add(movie);
+                }
+            }
+        } else { // 이미 대여중인 Movie들만 거르기
+            for (int key : movieDatabase.keySet()) {
+                Movie movie = movieDatabase.get(key);
+                if (movie.isRental()) {
+                    searchedList.add(movie);
+                }
+            }
+        }
+        return searchedList;
     }
 
     public void addMovie(Movie movie) {
@@ -120,5 +147,14 @@ public class MovieRepository {
             }
         }
         return searchedList;
+    }
+
+    public Movie deleteMovie(int delMovieNum) {
+        return movieDatabase.remove(delMovieNum);
+    }
+
+    // 번호에 맞는 영화 객체를 단 하나만 리턴하는 메서드.
+    public Movie searchMovie(int movieNumber) {
+        return movieDatabase.get(movieNumber);
     }
 }

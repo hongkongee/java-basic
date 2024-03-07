@@ -2,6 +2,7 @@ package video.main;
 
 import video.common.AppService;
 import video.movie.service.MovieService;
+import video.order.service.OrderService;
 import video.user.service.UserService;
 
 public class AppController {
@@ -16,7 +17,7 @@ public class AppController {
                 break;
 
             case 2:
-//                service = new OrderService();
+                service = new OrderService();
                 break;
 
             case 3:
@@ -30,8 +31,9 @@ public class AppController {
             default:
                 System.out.println("# 메뉴를 다시 입력하세요!");
         }
+        service.start();
+
     }
 
-    service.start();
 
 }

@@ -17,7 +17,7 @@ public class UserRepository {
     }
     
     // 회원 탐색 기능
-    public static List<User> findUserByName(String userName) {
+    public List<User> findUserByName(String userName) {
         List<User> userList = new ArrayList<>();
 
         for (Integer key : userDatabase.keySet()) {
@@ -31,7 +31,11 @@ public class UserRepository {
     }
 
     // 회원 삭제 기능
-    public User deleteUser(int delUserNum) {
+    public static User deleteUser(int delUserNum) {
         return userDatabase.remove(delUserNum);
+    }
+
+    public User findUserByNumber(int userNumber) {
+        return userDatabase.get(userNumber);
     }
 }

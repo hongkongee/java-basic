@@ -5,6 +5,7 @@ import video.common.Condition;
 import video.movie.domain.Movie;
 import video.movie.repository.MovieRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static video.ui.AppUi.*;
@@ -30,11 +31,53 @@ public class MovieService implements AppService {
                     break;
 
                 case 3:
+                    deleteMovieData();
+                    break;
+
+                case 4:
                     return; // start() 메서드를 강제 종료해서 초기 화면으로 돌아갈 수 있도록 처리.
 
                 default:
                     System.out.println("# 메뉴를 다시 입력하세요!");
             }
+        }
+    }
+
+    // 기존 등록 영화 삭제 기능
+    private void deleteMovieData() {
+        try {
+            List<Movie> movies = searchMovieData();
+
+            if (movies.size() > 0) {
+                // 삭제 대상 영화 번호를 저장할 리스트 -> 탈퇴할 영화 번호를 입력할 때 삭제 대상 번호를 입력했는 지 확인용.
+                List<Integer> movieNums = new ArrayList<>();
+
+                for (Movie movie : movies) {
+                    System.out.println(movie);
+                    movieNums.add(movie.getSerialNumber());
+                }
+
+                System.out.println("\n### 삭제할 영화 번호를 입력하세요.");
+                int delMovieNum = inputInteger(">>> ");
+
+                if (movieNums.contains(delMovieNum)) {
+                    // 실제 삭제
+                    Movie delMovie = movieRepository.deleteMovie(delMovieNum);
+                    System.out.printf("\n### 작품 <%s> 이/가 정상 삭제되었습니다.\n"
+                            , delMovie.getMovieName());
+
+                } else {
+                    System.out.println("\n### 검색한 영화 번호로만 삭제가 가능합니다.");
+                }
+
+            } else {
+                System.out.println("\n### 조회 결과가 없습니다.");
+            }
+
+
+
+        } catch (Exception e) {
+            System.out.println("\n ### 발행연도는 정수로만 입력하세요.");
         }
     }
 
@@ -97,7 +140,7 @@ public class MovieService implements AppService {
             keyword = inputString("# 검색어: ");
         }
 
-        movieRepository.searchMovieList(condition, keyword);
+       return movieRepository.searchMovieList(condition, keyword);
     }
 
     private void insertMovieData() {

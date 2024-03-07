@@ -26,6 +26,8 @@ public class Movie {
         this.charge = ChargePolicy.calculateDvdCharge(this);
     }
 
+
+
     public int getSerialNumber() {
         return serialNumber;
     }
