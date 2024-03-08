@@ -2,6 +2,9 @@ package video.user.domain;
 
 import video.order.domain.Order;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class User {
 
     private static int sequence; // 회원 누적 순차번호
@@ -12,13 +15,15 @@ public class User {
     private Grade grade; // 등급
     private int totalPaying; // 총 결제 금액
 
-    private Map<Integer, Order> orderList; // 각 회원마다 가지는 대여 목록
+    private Map<Integer,Order> orderList; // 각 회원마다 가지는 대여 목록
 
     public User(String userName, String phoneNumber, Grade grade) {
         this.userNumber = ++sequence; // 회원이 생성될 때 회원 고유 번호를 하나 올려서 대입.
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.grade = grade;
+
+        this.orderList = new HashMap<>();
     }
 
     public Map<Integer, Order> getOrderList() {
@@ -74,9 +79,14 @@ public class User {
         return totalPaying;
     }
 
+
+
+    // 화원이 대여를 진행할 때 이 setter가 호출됨
+    // 총 결제금액에 따라 회원 등급을 조정.
     public void setTotalPaying(int totalPaying) {
         this.totalPaying += totalPaying;
     }
+
 
     @Override
     public String toString() {

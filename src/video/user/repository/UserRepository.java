@@ -1,7 +1,11 @@
 package video.user.repository;
 
+import video.movie.domain.Movie;
+import video.order.domain.Order;
+import video.user.domain.Grade;
 import video.user.domain.User;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +14,22 @@ import java.util.Map;
 public class UserRepository {
 
     private static final Map<Integer, User> userDatabase = new HashMap<>();
+
+    static { // 더미 데이터
+        User test1 = new User("김테스트", "010-1234-5667", Grade.BRONZE);
+        User test2 = new User("이테스트", "010-1234-5222", Grade.BRONZE);
+        User test3 = new User("박테스트", "010-1234-4444", Grade.BRONZE);
+        User test4 = new User("최테스트", "010-1234-8888", Grade.BRONZE);
+        User test5 = new User("정테스트", "010-1234-9876", Grade.BRONZE);
+        userDatabase.put(test1.getUserNumber(), test1);
+
+        Movie testMovie = new Movie("무비", "국가", 2024);
+        Order testOrder = new Order(test1, testMovie);
+        testOrder.setOrderDate(LocalDate.of(2024, 3, 1));
+        testOrder.setReturnDate(LocalDate.of(2024, 3, 4));
+        test1.addOrder(testOrder);
+
+    }
 
     // 회원 추가 기능
     public static void addUser(User user) {

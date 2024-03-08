@@ -52,7 +52,7 @@ public class MovieRepository {
         movieDatabase.put(movie14.getSerialNumber(), movie14);
     }
 
-    public static List<Movie> searchByRental(boolean possible) {
+    public List<Movie> searchByRental(boolean possible) {
         List<Movie> searchedList = new ArrayList<>();
 
         if (possible) { // 대여 가능한 Movie들만 거르기
